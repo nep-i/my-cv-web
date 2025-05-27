@@ -1,0 +1,656 @@
+$app-height: 100vh;
+$line-width: 1px;
+$white-color: rgb(228, 231, 233);
+
+$black-color: rgb(7, 10, 19);
+$year-color: rgb(87, 151, 117);
+
+.app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  height: $app-height;
+  font-family: monospace;
+  padding-left: 15px;
+  overflow: hidden;
+  color: $white-color;
+  background-color: $black-color;
+  letter-spacing: 0.08em;
+
+  &.animate-app {
+    animation: animate-initial-background 1s forwards;
+  }
+}
+
+.icon {
+  color: $white-color;
+  background-color: transparent;
+  width: 2em;
+}
+
+@keyframes animate-initial-background {
+  0% {
+    background-color: $white-color;
+    color: $black-color;
+  }
+
+  100% {
+    background-color: $black-color;
+    color: $white-color;
+  }
+}
+
+.above-section {
+  margin: 0;
+  display: flex;
+  justify-content: flex-start;
+
+  align-items: flex-start;
+  align-content: start;
+  z-index: 7;
+  background: transparent;
+  font-size: 1.16em;
+}
+.bottom-section {
+  margin: 0;
+  display: flex;
+  justify-content: flex-end;
+
+  align-items: flex-start;
+  align-content: end;
+  box-sizing: border-box;
+  font-size: 1.3em;
+}
+
+.audiocontrols {
+  writing-mode: horizontal-tb;
+  width: 100%;
+
+  direction: ltr;
+  text-align: left;
+  list-style-image: none !important;
+  font: normal normal normal 100% / normal sans-serif !important;
+  text-decoration: none !important;
+  white-space: normal !important;
+}
+
+path {
+  stroke: $white-color;
+}
+
+.section-text {
+  top: 3.43vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  height: 100%;
+  width: 100%;
+
+  transition: all 0.3s ease-in-out;
+
+  &.animate-text-top {
+    height: 50%;
+    margin-bottom: 3.5vh;
+  }
+}
+
+.section-text-bottom {
+  // margin: 0;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-evenly;
+  align-items: flex-end;
+  height: 130%;
+  width: 100%;
+  position: relative;
+  top: -7.86vh;
+  transition: all 0.3s ease-in-out;
+  &.animate-bottom-section {
+    transform: translateX(-200%);
+    z-index: 7;
+  }
+}
+
+.section-text-bottom-two {
+  height: 0;
+  visibility: hidden;
+  z-index: 4;
+  transition: de-animate-bottom-section-two 2s ease-in-out;
+  &.de-animate-bottom-section-two {
+    transform: translateX(-125px);
+  }
+  &.animate-bottom-section-two {
+    animation: animate-bottom-section-two 0.5s ease-out 0.2s both;
+  }
+
+  @keyframes animate-bottom-section-two {
+    0% {
+      transform: translateX(-125px);
+      display: flex;
+
+      z-index: 5;
+
+      height: 70%;
+      margin: 0;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: flex-start;
+      width: 200px;
+      visibility: visible;
+    }
+    30% {
+      transform: translateX(15px);
+    }
+    100% {
+      display: flex;
+
+      transform: translateX(0px);
+      z-index: 5;
+
+      height: 51%;
+      margin: 0;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: flex-start;
+      width: 200px;
+      visibility: visible;
+    }
+  }
+}
+
+.line-top {
+  margin-right: 4px;
+  height: 200%;
+  width: $line-width;
+  background: $black-color;
+  z-index: 7;
+  position: relative;
+  background-color: $white-color;
+  color: $white-color;
+
+  &.animate-top-line-initial {
+    animation: animate-initial-line 1.2s;
+  }
+
+  &.animate-top {
+    z-index: 7;
+
+    border-right: 1px $white-color solid;
+    background: $black-color;
+    height: 320%;
+  }
+}
+
+.line-top::after {
+  content: '';
+  display: flex;
+
+  background: $white-color;
+  position: relative;
+  top: 99.8%;
+  left: 0%;
+  animation: animate-line-after 0.6s forwards 1s;
+}
+
+.line-bottom {
+  margin-left: 4px;
+  height: 200%;
+  width: $line-width;
+  background: $white-color;
+  align-self: flex-end;
+  z-index: 6;
+  position: relative;
+
+  &.animate-bottom-line-initial {
+    animation: animate-initial-line 1.2s forwards;
+  }
+
+  &.animate-bottom {
+    animation: animate 0.43s forwards;
+  }
+}
+
+@keyframes animate {
+  0% {
+    height: 200%;
+  }
+  100% {
+    position: fixed;
+    background-color: $black-color;
+    height: 200%;
+    width: 700px;
+  }
+}
+
+@keyframes animate-initial-line {
+  0% {
+    height: 0%;
+    color: $black-color;
+  }
+  100% {
+    height: 200%;
+    color: $white-color;
+  }
+}
+
+.line-bottom::before {
+  content: '';
+  display: flex;
+  background: $white-color;
+  position: relative;
+  transform: translateX(-100%);
+  animation: animate-line-after 0.6s forwards 1s;
+}
+
+@keyframes animate-line-after {
+  0% {
+    height: 0;
+    width: 0;
+  }
+  100% {
+    height: 3px;
+    width: 5vw;
+  }
+}
+
+.pic {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin: 0;
+
+  overflow: hidden;
+
+  .pic-content {
+    display: flex;
+    width: 100%;
+    align-items: flex-end;
+    justify-content: flex-start;
+    box-sizing: border-box;
+  }
+}
+
+.canvas-pic {
+  scale: 0.23;
+  z-index: 1;
+  margin-top: 1%;
+}
+
+.main-text {
+  background: transparent;
+  font-size: 0px;
+  position: fixed;
+  margin: 10px;
+  top: 0%;
+  right: 0%;
+  z-index: 8;
+  height: auto;
+  padding: 0;
+
+  &.main-text-animate {
+    animation: animate-text 0.45s ease-in-out both;
+  }
+
+  @keyframes animate-text {
+    0% {
+      transform: translateX(200%);
+    }
+    30% {
+      width: 65%;
+    }
+    100% {
+      transform: translateX(0%);
+      width: 65%;
+      font-size: 1.4em;
+    }
+  }
+}
+
+[id^='education-part-'] {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  padding-left: 5px;
+  flex-wrap: nowrap;
+  position: relative;
+  margin-bottom: 5px;
+  transition:
+    font-size 0.3s ease,
+    transform 0.3s ease;
+
+  .education-year {
+    display: flex;
+    margin-right: 15px;
+    width: 21%;
+    color: $year-color;
+  }
+  .education-description {
+    display: flex;
+    justify-content: start;
+    text-align: justify;
+    width: 100%;
+    position: relative;
+  }
+}
+
+[id^='education-part-']::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: $white-color;
+  transition: ease-in-out 0.17s;
+}
+
+.section-text div {
+  position: relative;
+  display: flex;
+  cursor: pointer;
+  transition: all 0.4s ease-out;
+
+  width: 100%;
+  &:hover {
+    text-transform: uppercase;
+  }
+}
+
+.section-text-bottom div {
+  position: relative;
+  display: flex;
+  cursor: pointer;
+  justify-content: flex-end;
+  transition: all 0.4s ease-out;
+
+  width: 100%;
+  &:hover {
+    text-transform: uppercase;
+  }
+}
+
+.section-text-bottom-two div {
+  position: relative;
+  display: flex;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.4s ease-out;
+  &:hover {
+    text-transform: uppercase;
+  }
+}
+
+.section-text div::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -25px;
+  width: 0;
+  height: 1px;
+  background-color: $white-color;
+  transition: width 0.5s ease-out;
+}
+
+.section-text-bottom-two div::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -25px;
+  width: 0;
+  height: 1px;
+  background-color: $white-color;
+  transition: width 0.5s ease-out;
+}
+
+.section-text-bottom div::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -25px;
+  width: 0;
+  height: 1px;
+  background-color: $white-color;
+  transition: width 0.5s ease-out;
+}
+.active {
+  text-transform: uppercase;
+}
+.section-text div.active::after {
+  width: 120%;
+}
+
+.section-text-bottom div.active::after {
+  width: 120%;
+}
+
+.section-text-bottom-two div.active::after {
+  width: 120%;
+}
+
+.perinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-right: 15px;
+  padding-left: 15px;
+  width: 90%;
+  background: transparent;
+  z-index: 8;
+}
+
+.poetry-line {
+  background-color: $white-color;
+  height: 0px;
+  position: relative;
+  width: 110%;
+}
+
+.poetry-section {
+  background-color: transparent;
+  padding-left: 10px;
+  width: 98%;
+  text-transform: lowercase;
+}
+
+.photo-section {
+  width: 90%;
+  background-color: transparent;
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-items: center;
+}
+
+.photo-section button:nth-child(odd) {
+  transform: scaleX(-1);
+}
+
+.button-img {
+  display: flex;
+  position: relative;
+  background: none;
+  width: 18%;
+  border: none;
+  font-size: 18px;
+  margin: 20px 20px;
+  background: rgba(0, 0, 0, 0.09);
+  z-index: 4;
+  transition: all 0.2s;
+
+  &:hover {
+    position: sticky;
+    width: 60%;
+    bottom: 40px;
+    right: 70px;
+  }
+}
+
+img {
+  position: sticky;
+  width: 100%;
+}
+
+button::before,
+button::after {
+  content: '';
+  width: 0;
+  height: 5px;
+  position: absolute;
+  transition: all 0.2s;
+  background: #fff;
+}
+
+.button-img:hover::after {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: 1px solid white;
+}
+
+button::after {
+  right: 0;
+  bottom: 0;
+  transition-duration: 0.4s;
+}
+button img::after {
+  right: 0;
+  bottom: 0;
+  transition-duration: 0.4s;
+}
+button::before {
+  left: 0;
+  top: 0;
+  transition-duration: 0.4s;
+}
+button img::before {
+  left: 0;
+  top: 0;
+  transition-duration: 0.4s;
+}
+
+.qualities {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 1em;
+}
+
+.qualy-text {
+  display: flex;
+  margin-bottom: 25px;
+  text-align: justify;
+  width: 98%;
+}
+
+.skills-part {
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  flex-wrap: wrap;
+  width: 98%;
+  text-align: justify;
+  display: flex;
+}
+
+.known div {
+  color: $year-color;
+  display: flex;
+  text-align: right;
+  padding-left: 10px;
+  margin-bottom: 10px;
+  box-sizing: content-box;
+}
+
+.known {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
+  transition:
+    font-size 0.3s ease,
+    transform 0.3s ease;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: $white-color;
+    transition: 0.17s ease-in-out;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .canvas-pic {
+    scale: 0.34;
+  }
+  .photo-section {
+    height: 57vw;
+  }
+  .section-text div {
+    &:hover {
+      text-transform: uppercase;
+    }
+  }
+
+  .section-text-bottom div {
+    &:hover {
+      text-transform: uppercase;
+    }
+  }
+
+  .section-text-bottom-two div {
+    &:hover {
+      text-transform: uppercase;
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  @keyframes animate-line-after {
+    0% {
+      height: 0;
+      width: 0;
+    }
+    100% {
+      height: 3px;
+      width: 12vw;
+    }
+  }
+
+  .photo-section button:nth-child(1) {
+    width: 55%;
+  }
+
+  .photo-section button:nth-child(2) {
+    width: 45%;
+  }
+
+  .photo-section button:nth-child(3) {
+    width: 40%;
+  }
+
+  .photo-section button:last-child {
+    width: 55%;
+  }
+
+  .section-text div.active::after {
+    width: 65%;
+  }
+
+  .section-text-bottom div.active::after {
+    width: 65%;
+  }
+
+  .section-text-bottom-two div.active::after {
+    width: 65%;
+  }
+}
